@@ -5,15 +5,14 @@ module.exports = {
     es2021: true,
     jest: true
   },
-  extends: 'airbnb',
+  extends: ['airbnb', 'prettier'],
+  plugins: ['prettier'],
   overrides: [
     {
       env: {
         node: true
       },
-      files: [
-        '.eslintrc.{js,cjs}'
-      ],
+      files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
         sourceType: 'script'
       }
@@ -23,6 +22,7 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-    'comma-dangle': ['error', 'never']
+    'comma-dangle': ['error', 'never'],
+    'prettier/prettier': 'error'
   }
 };

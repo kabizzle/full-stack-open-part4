@@ -11,6 +11,25 @@ const totalLikes = (blogs) => {
   return likes;
 };
 
+const favoriteBlog = (blogs) => {
+  let currentMax = -9999;
+  let blogMax = {};
+  for (const blog of blogs) {
+    if (blog.likes > currentMax) {
+      blogMax = {
+        title: blog.title,
+        author: blog.author,
+        likes: blog.likes
+      };
+      currentMax = blog.likes;
+    }
+  }
+
+  return blogMax;
+};
+
 module.exports = {
-  dummy, totalLikes
+  dummy,
+  totalLikes,
+  favoriteBlog
 };
