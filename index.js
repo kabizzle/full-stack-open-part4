@@ -1,7 +1,7 @@
+const config = require('./utils/config');
 const app = require('./app');
+const logger = require('./utils/logger');
 
-const PORT = 3003;
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(config.PORT, () => {
+  logger.info(`Server running on ${config.PORT} \n`);
 });
