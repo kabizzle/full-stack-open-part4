@@ -10,7 +10,12 @@ const error = (...params) => {
   }
 };
 
+const test = (...params) => {
+  console.log(...params);
+};
+
 module.exports = {
   info,
+  test,
   error
 };
