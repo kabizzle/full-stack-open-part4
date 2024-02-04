@@ -70,6 +70,19 @@ describe('Blog List Tests', () => {
 
     expect(listHelper.findLikes(blogList, "Unique Blog 2")).toEqual(0);
   });
+
+  test('missing title or url returns 400', async () => {
+    const blogMissingTitleURL = {
+      author: 'Jane Doe',
+      likes: 23
+    };
+    
+    await api
+    .post('/api/blogs')
+    .send(blogMissingTitleURL)
+    .expect(400);
+
+  }, 20000);
 });
 
 afterAll(async () => {
