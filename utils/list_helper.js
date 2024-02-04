@@ -109,6 +109,14 @@ const favoriteBlog = (blogs) => {
   return blogMax;
 };
 
+const findLikes = (blogs, title) => {
+  for (const blog of blogs) {
+    if (blog.title === title) {
+      return blog.likes
+    }
+  }
+}
+
 module.exports = {
   listWithOneBlog,
   emptyList,
@@ -116,5 +124,6 @@ module.exports = {
   equalLikes,
   dummy,
   totalLikes,
-  favoriteBlog
+  favoriteBlog,
+  findLikes
 };

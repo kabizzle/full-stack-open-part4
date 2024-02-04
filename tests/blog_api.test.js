@@ -52,6 +52,24 @@ describe('Blog List Tests', () => {
 
     expect(blogList.map(i => i.title)).toContain('Unique Blog 1');
   });
+
+  test('likes value defaults to 0', async () => {
+    const newBlogZeroLikes = {
+      title: 'Unique Blog 2',
+      author: 'Jane Doe',
+      url: 'https://www.janedoe.com',
+    };
+    
+    await api
+    .post('/api/blogs')
+    .send(newBlogZeroLikes)
+    .expect(201)
+    .expect('Content-Type', /application\/json/);
+
+    const blogList = await Blog.find({});
+
+    expect(listHelper.findLikes(blogList, "Unique Blog 2")).toEqual(0);
+  });
 });
 
 afterAll(async () => {
