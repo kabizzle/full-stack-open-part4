@@ -104,6 +104,23 @@ describe('Blog List Tests', () => {
 
     expect(contents).not.toContain(blogToDelete.title)
   })
+
+  test('likes for a note can be updated', async () => {
+    const blogsAtStart = await helper.blogsInDb()
+    const blogToUpdate = blogsAtStart[0]
+
+    blogToUpdate.likes = 12;
+
+    await api
+      .put(`/api/blogs/${blogToUpdate.id}`)
+      .send(blogToUpdate)
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+
+    const blogList = await helper.blogsInDb();
+
+    expect(helper.findLikes(blogList, `${blogToUpdate.title}`)).toEqual(12);
+  })
 });
 
 afterAll(async () => {
