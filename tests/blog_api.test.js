@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const supertest = require('supertest');
 const app = require('../app');
-const listHelper = require('../utils/list_helper');
+const helper = require('./test_helper');
 const Blog = require('../models/blogs');
 const logger = require('../utils/logger');
 
@@ -11,10 +11,12 @@ describe('Blog List Tests', () => {
   beforeEach(async () => {
     await Blog.deleteMany({});
 
-    for (let blog of listHelper.biggerList) {
-      let blogObject = new Blog(blog);
-      await blogObject.save();
-    }
+    let blogObject = new Blog(helper.initialBlogs[0]);
+    await blogObject.save();
+    
+    blogObject = new Blog(helper.initialBlogs[1]);
+    await blogObject.save();
+
     logger.test('Blogs saved');
   });
 
@@ -44,11 +46,11 @@ describe('Blog List Tests', () => {
       .expect(201)
       .expect('Content-Type', /application\/json/);
 
-    const blogList = await Blog.find({});
+    const blogList = await helper.blogsInDb();
 
     logger.test(blogList);
 
-    expect(blogList).toHaveLength(listHelper.biggerList.length + 1);
+    expect(blogList).toHaveLength(helper.initialBlogs.length + 1);
 
     expect(blogList.map(i => i.title)).toContain('Unique Blog 1');
   });
@@ -66,9 +68,9 @@ describe('Blog List Tests', () => {
     .expect(201)
     .expect('Content-Type', /application\/json/);
 
-    const blogList = await Blog.find({});
+    const blogList = await helper.blogsInDb();
 
-    expect(listHelper.findLikes(blogList, "Unique Blog 2")).toEqual(0);
+    expect(helper.findLikes(blogList, "Unique Blog 2")).toEqual(0);
   });
 
   test('missing title or url returns 400', async () => {
