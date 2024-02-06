@@ -109,7 +109,7 @@ describe('Blog List Tests', () => {
     const blogsAtStart = await helper.blogsInDb()
     const blogToUpdate = blogsAtStart[0]
 
-    blogToUpdate.likes = 12;
+    blogToUpdate.likes = 29;
 
     await api
       .put(`/api/blogs/${blogToUpdate.id}`)
@@ -119,7 +119,7 @@ describe('Blog List Tests', () => {
 
     const blogList = await helper.blogsInDb();
 
-    expect(helper.findLikes(blogList, `${blogToUpdate.title}`)).toEqual(12);
+    expect(helper.findLikes(blogList, `${blogToUpdate.title}`)).toEqual(29);
   })
 });
 
