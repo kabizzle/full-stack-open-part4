@@ -112,10 +112,10 @@ const favoriteBlog = (blogs) => {
 const findLikes = (blogs, title) => {
   for (const blog of blogs) {
     if (blog.title === title) {
-      return blog.likes
+      return blog.likes;
     }
   }
-}
+};
 
 module.exports = {
   listWithOneBlog,
