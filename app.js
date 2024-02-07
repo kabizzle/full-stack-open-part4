@@ -33,6 +33,9 @@ app.use(middleware.requestLogger);
 // Extract jwt from request
 app.use(middleware.tokenExtractor);
 
+// // Set user based on jwt
+// app.use(middleware.userExtractor);
+
 // Endpoints and their respective routers
 app.use('/api/blogs', blogsRouter);
 app.use('/api/users', usersRouter);
