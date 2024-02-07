@@ -117,6 +117,32 @@ const findLikes = (blogs, title) => {
   }
 };
 
+const mostBlogs = (blogs) => {
+  let authors = {}
+  let maxAuthor = ""
+  let currentMax = -999
+
+  blogs.forEach(blog => {
+    let currentAuthor = blog.author;
+
+    if (Object.keys(authors).includes(currentAuthor)) {
+      authors[`${currentAuthor}`] += 1;
+    } else {
+      authors[`${currentAuthor}`] = 1
+    }
+    
+    if (authors[`${currentAuthor}`] > currentMax) {
+      maxAuthor = currentAuthor;
+      currentMax = authors[`${currentAuthor}`];
+    }
+  })
+
+  return {
+    author: maxAuthor,
+    blogs : currentMax 
+  }
+}
+
 module.exports = {
   listWithOneBlog,
   emptyList,
@@ -125,5 +151,6 @@ module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
-  findLikes
+  findLikes,
+  mostBlogs
 };

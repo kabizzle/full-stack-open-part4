@@ -47,4 +47,20 @@ describe('favorite blog', () => {
       likes: 14
     });
   });
+
+  test('single blog returns correct author', () => {
+    const result = listHelper.mostBlogs(listHelper.listWithOneBlog);
+    expect(result).toEqual({
+      author: 'Edsger W. Dijkstra',
+      blogs: 1
+    });
+  });
+
+  test('author with most blogs', () => {
+    const result = listHelper.mostBlogs(listHelper.biggerList);
+    expect(result).toEqual({
+      author: 'Robert C. Martin',
+      blogs: 3
+    });
+  });
 });
