@@ -30,6 +30,9 @@ app.use(express.static('build'));
 // Log requests to the api
 app.use(middleware.requestLogger);
 
+// Extract jwt from request
+app.use(middleware.tokenExtractor);
+
 // Endpoints and their respective routers
 app.use('/api/blogs', blogsRouter);
 app.use('/api/users', usersRouter);
