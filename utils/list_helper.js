@@ -118,56 +118,56 @@ const findLikes = (blogs, title) => {
 };
 
 const mostBlogs = (blogs) => {
-  let authors = {}
-  let maxAuthor = ""
-  let currentMax = -999
+  let authors = {};
+  let maxAuthor = '';
+  let currentMax = -999;
 
-  blogs.forEach(blog => {
+  blogs.forEach((blog) => {
     let currentAuthor = blog.author;
 
     if (Object.keys(authors).includes(currentAuthor)) {
       authors[`${currentAuthor}`] += 1;
     } else {
-      authors[`${currentAuthor}`] = 1
+      authors[`${currentAuthor}`] = 1;
     }
-    
+
     if (authors[`${currentAuthor}`] > currentMax) {
       maxAuthor = currentAuthor;
       currentMax = authors[`${currentAuthor}`];
     }
-  })
+  });
 
   return {
     author: maxAuthor,
-    blogs : currentMax 
-  }
-}
+    blogs: currentMax
+  };
+};
 
 const mostLikes = (blogs) => {
-  let authors = {}
-  let maxAuthor = ""
-  let currentMax = -999
+  let authors = {};
+  let maxAuthor = '';
+  let currentMax = -999;
 
-  blogs.forEach(blog => {
+  blogs.forEach((blog) => {
     let currentAuthor = blog.author;
 
     if (Object.keys(authors).includes(currentAuthor)) {
       authors[`${currentAuthor}`] += blog.likes;
     } else {
-      authors[`${currentAuthor}`] = blog.likes
+      authors[`${currentAuthor}`] = blog.likes;
     }
-    
+
     if (authors[`${currentAuthor}`] > currentMax) {
       maxAuthor = currentAuthor;
       currentMax = authors[`${currentAuthor}`];
     }
-  })
+  });
 
   return {
     author: maxAuthor,
-    likes : currentMax 
-  }
-}
+    likes: currentMax
+  };
+};
 
 module.exports = {
   listWithOneBlog,
